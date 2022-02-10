@@ -406,13 +406,13 @@ public static int sumOfNodes(Node root) {
 A complete binary tree is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible. 
 
 Example:
-`
+~~~
                 1
               /   \
              2     3
             / \     \
            4   5     6
-`           
+~~~           
 ~~~java
  /* Given a binary tree, return true if the tree is complete
        else false */

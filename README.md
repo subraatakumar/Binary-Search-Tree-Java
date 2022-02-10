@@ -299,4 +299,176 @@ Find the leftmost element. Because the leftmost element of a binary search tree 
   }
 ~~~
 
+## Height of tree
+~~~java
+public static int height(Node root) {
+       if(root == null) {
+           return 0;
+       }
+ 
+       int leftHeight = height(root.left);
+       int rightHeight = height(root.right);
+       return Math.max(leftHeight, rightHeight) + 1;
+}
+~~~
 
+## Count of Nodes
+~~~java
+public static int countOfNodes(Node root) {
+       if(root == null) {
+           return 0;
+       }
+ 
+       int leftNodes = countOfNodes(root.left);
+       int rightNodes = countOfNodes(root.right);
+       return leftNodes + rightNodes + 1;
+   }
+~~~
+
+## Sum of Nodes
+~~~java
+public static int sumOfNodes(Node root) {
+       if(root == null) {
+           return 0;
+       }
+ 
+       int leftSum = sumOfNodes(root.left);
+       int rightSum = sumOfNodes(root.right);
+       return leftSum + rightSum + root.data;
+   }
+~~~
+
+## get Maximum Width
+~~~java
+    /* Function to get the maximum width of a binary tree*/
+    int getMaxWidth(Node node)
+    {
+        int maxWidth = 0;
+        int width;
+        int h = height(node);
+        int i;
+ 
+        /* Get width of each level and compare
+           the width with maximum width so far */
+        for (i = 1; i <= h; i++) {
+            width = getWidth(node, i);
+            if (width > maxWidth)
+                maxWidth = width;
+        }
+ 
+        return maxWidth;
+    }
+ 
+    /* Get width of a given level */
+    int getWidth(Node node, int level)
+    {
+        if (node == null)
+            return 0;
+ 
+        if (level == 1)
+            return 1;
+        else if (level > 1)
+            return getWidth(node.left, level - 1)
+                + getWidth(node.right, level - 1);
+        return 0;
+    }
+~~~
+
+## Full Binary Tree
+
+-If a binary tree node is NULL then it is a full binary tree.
+-If a binary tree node does have empty left and right sub-trees, then it is a full binary tree by definition.
+
+~~~java
+    /* this function checks if a binary tree is full or not */
+    boolean isFullTree(Node node)
+    {
+        // if empty tree
+        if(node == null)
+        return true;
+          
+        // if leaf node
+        if(node.left == null && node.right == null )
+            return true;
+          
+        // if both left and right subtrees are not null
+        // the are full
+        if((node.left!=null) && (node.right!=null))
+            return (isFullTree(node.left) && isFullTree(node.right));
+          
+        // if none work
+        return false;
+    }
+~~~
+
+## Check isComplete
+
+A complete binary tree is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible. 
+
+Example:
+`
+                1
+              /   \
+             2     3
+            / \     \
+           4   5     6
+`           
+~~~java
+ /* Given a binary tree, return true if the tree is complete
+       else false */
+    static boolean isCompleteBT(Node root)
+    {
+        // Base Case: An empty tree is complete Binary Tree
+        if(root == null)
+            return true;
+         
+        // Create an empty queue
+        Queue<Node> queue =new LinkedList<>();
+         
+        // Create a flag variable which will be set true
+        // when a non full node is seen
+        boolean flag = false;
+         
+        // Do level order traversal using queue.
+        queue.add(root);
+        while(!queue.isEmpty())
+        {
+            Node temp_node = queue.remove();
+             
+            /* Check if left child is present*/
+            if(temp_node.left != null)
+            {
+                 // If we have seen a non full node, and we see a node
+                 // with non-empty left child, then the given tree is not
+                 // a complete Binary Tree
+                if(flag == true)
+                    return false;
+                 
+                 // Enqueue Left Child
+                queue.add(temp_node.left);
+            }
+            // If this a non-full node, set the flag as true
+            else
+                flag = true;
+             
+            /* Check if right child is present*/
+            if(temp_node.right != null)
+            {
+                // If we have seen a non full node, and we see a node
+                // with non-empty right child, then the given tree is not
+                // a complete Binary Tree
+                if(flag == true)
+                    return false;
+                 
+                // Enqueue Right Child
+                queue.add(temp_node.right);
+                 
+            }
+            // If this a non-full node, set the flag as true
+            else
+                flag = true;
+        }
+         // If we reach here, then the tree is complete Binary Tree
+        return true;
+    }
+~~~

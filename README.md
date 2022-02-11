@@ -112,6 +112,19 @@ public static void levelOrder(Node root) {
     
     return node;
   }
+   public Node getSuccessor(Node node) {
+	    if(node == null) {
+	      return null;
+	    }
+	    
+	    Node temp = node.right;
+	    
+	    while(temp.left != null) {
+	      temp = temp.left;
+	    }
+	    
+	    return temp;
+	}   
 ~~~
 
 ## Check if a value exists in Binary Search Tree

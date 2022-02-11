@@ -1,39 +1,39 @@
 package bst;
 
-class Node {
-	  Node left;
-	  Node right;
+class Node1 {
+	  Node1 left;
+	  Node1 right;
 	  int data;
 	}
 
 class BST {
-  public void inorder(Node node) {
-	  // Print Root Node in middle
-	    if(node == null) {
+  public void inorder(Node1 Node1) {
+	  // Print Root Node1 in middle
+	    if(Node1 == null) {
 	      return;
 	    }
 	    
-	    inorder(node.left);
-	    System.out.print(node.data + " ");
-	    inorder(node.right);
+	    inorder(Node1.left);
+	    System.out.print(Node1.data + " ");
+	    inorder(Node1.right);
 	  }
 	  
-  public Node insert(Node node, int val) {
-    if(node == null) {
-      return createNewNode(val);
+  public Node1 insert(Node1 Node1, int val) {
+    if(Node1 == null) {
+      return createNewNode1(val);
     }
     
-    if(val < node.data) {
-      node.left = insert(node.left, val);
-    } else if((val > node.data)) {
-      node.right = insert(node.right, val);
+    if(val < Node1.data) {
+      Node1.left = insert(Node1.left, val);
+    } else if((val > Node1.data)) {
+      Node1.right = insert(Node1.right, val);
     }
     
-    return node;
+    return Node1;
   }
   
-  public Node createNewNode(int k) {
-    Node a = new Node();
+  public Node1 createNewNode1(int k) {
+    Node1 a = new Node1();
     a.data = k;
     a.left = null;
     a.right = null;
@@ -45,7 +45,7 @@ public class BSTApp {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	    BST a = new BST();
-	    Node root = null;
+	    Node1 root = null;
 	    
 	    root = a.insert(root, 8);
 	    root = a.insert(root, 3);
